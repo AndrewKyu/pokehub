@@ -22,6 +22,7 @@ angular.module('core.fileViewer')
 					}
 				}
 			});
+			//logic to create a folder object by using the authentication service 
 			vm.onSubmit = function () {
 				var folder = {
 					"name" : vm.params.folderName,

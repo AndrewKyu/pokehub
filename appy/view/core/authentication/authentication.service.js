@@ -154,16 +154,19 @@ angular.module('core.authentication')
         })
     };
 
-      this.createFolder = function(folder, folderpath) { //come up with parameters
+      this.createFolder = function(folder, folderpath) { 
 
-      var userId = this.getId();
-      var params = {
-        name: folder.name,
+      var userId = this.getId(); 
+      //make that body of the request to appy 
+      var params = { 
+        name: folder.name, 
         path: folderpath,
         parent: folder.parent 
       }
+      //make the request 
       return $http.post('/folder', params)
         .then(function(result) {
+          //use the results of the request to add the folder to the user 
           console.log(result);
           var folderId = result.data._id;
           var params = [folderId];
@@ -171,7 +174,12 @@ angular.module('core.authentication')
         })
     };
 
+      this.addFileToFolder = function(fileID, folderID){
+        //add file to a folder 
+        var params = [fileId];
+        return $http.post('/folder/' + folderId + '/file', params)
 
+    };
 
  }
 ]);
