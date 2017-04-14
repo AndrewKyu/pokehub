@@ -15,3 +15,12 @@
 		</div>
 	</div>
 </div>
+<form class="col s12" ng-submit="vm.onSubmit()">
+	<div class="row">
+	<div class="input-field col s8">
+	          <input id="folder_name" ng-model="vm.params.folderName" type="text" class="validate">
+	          <label for="folder_name">Folder Name</label>
+	        </div>
+	<button class="red btn s4" type="submit">Create Folder</button>
+</form>
+</div>

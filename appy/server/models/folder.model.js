@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = function (mongoose) {
-  var modelName = "file";
+  var modelName = "folder";
   var Types = mongoose.Schema.Types;
   var Schema = new mongoose.Schema({
     name: {
@@ -9,13 +9,13 @@ module.exports = function (mongoose) {
       required: true,
       unique: true
     },
-    type: {
-      type: Types.String,
-      required: true
-    },
     path: {
       type: Types.String,
       required: true
+    },
+    parent:{
+      type: Types.String,
+      required: false
     }
   });
   
@@ -23,13 +23,17 @@ module.exports = function (mongoose) {
     collectionName: modelName,
     routeOptions: {
       associations: {
+        files:{
+          type:"ONE_MANY",
+          model:"file"
+        },
         users: {
-          type: "MANY_MANY",
+          type: "MANY_ONE",
           model: "user"
         },
         folders:{
-          type: "MANY_ONE",
-          model:"folder"
+          type:"ONE_MANY",
+          model: "folder"
         }
       }
     }
@@ -37,3 +41,5 @@ module.exports = function (mongoose) {
   
   return Schema;
 };
+
+

@@ -152,7 +152,24 @@ angular.module('core.authentication')
           var params = [fileId];
           return $http.post('/user/' + userId + '/file', params)
         })
-    }
+    };
+
+      this.createFolder = function(folder, folderpath) { //come up with parameters
+
+      var userId = this.getId();
+      var params = {
+        name: folder.name,
+        path: folderpath,
+        parent: folder.parent 
+      }
+      return $http.post('/folder', params)
+        .then(function(result) {
+          console.log(result);
+          var folderId = result.data._id;
+          var params = [folderId];
+          return $http.post('/user/' + userId + '/folder', params)
+        })
+    };
 
 
 
